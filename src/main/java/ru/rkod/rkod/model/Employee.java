@@ -8,13 +8,9 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 
 @Data
 @Entity
