@@ -1,0 +1,19 @@
+package ru.rkod.rkod.model;
+
+public enum Department {
+    ADMIN,
+    IT,
+    PLUMBER,
+    ELECTRICIAN,
+    CLEANER,
+    ONKO_DEPARTMENT,
+    POLYCLINIC,
+    RADIATION_DIAGNOSTICS,
+    RADIOLOGY,
+    DAY_HOSPITAL_9,
+    ENDOSCOPY,
+    INTENSIVE_CARE,
+    CHEMOTHERAPY,
+    HISTOLOGICAL_LABORATORY,
+    CLINIC_LABORATORY
+}
