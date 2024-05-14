@@ -1,5 +1,7 @@
 package ru.rkod.rkod.service.impl;
 
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.rkod.rkod.dto.EmployeeDto;
 import ru.rkod.rkod.mapper.EmployeeMapper;
@@ -9,6 +11,7 @@ import ru.rkod.rkod.service.EmployeeService;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class EmployeeServiceImp implements EmployeeService {
     private final EmployeeRepository employeeRepository;
@@ -23,8 +26,10 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public EmployeeDto addEmployee(EmployeeDto employeeDto) {
+    @Transactional
+    public EmployeeDto create(EmployeeDto employeeDto) {
         Employee employee = EmployeeMapper.toEmployee(employeeDto);
         return EmployeeMapper.toEmployeeDto(employeeRepository.save(employee));
     }
+
 }

@@ -1,30 +1,31 @@
 package ru.rkod.rkod.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import ru.rkod.rkod.dto.EmployeeDto;
 import ru.rkod.rkod.model.Employee;
 import ru.rkod.rkod.service.EmployeeService;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/")
+@Slf4j
+@RestController
 @AllArgsConstructor
+@RequestMapping("")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping("employees")
+    @GetMapping("/employees")
     public List<Employee> getAll() {
         return employeeService.getAll();
     }
 
-    @PostMapping("add")
-    public void addEmployee(EmployeeDto employeeDto){
-        employeeService.addEmployee(employeeDto);
+    @PostMapping("/add")
+    public EmployeeDto addEmployee(@RequestBody EmployeeDto employeeDto) {
+        log.info("метод addEmployee");
+        return employeeService.create(employeeDto);
     }
 }
