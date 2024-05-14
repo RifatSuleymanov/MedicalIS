@@ -3,10 +3,7 @@ package ru.rkod.rkod.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
@@ -19,24 +16,19 @@ import java.time.LocalDate;
 public class Employee {
     @Id
     private Integer id; //id
-    @NotBlank
-    @Min(value = 3)
-    @Max(value = 15)
+    @NotEmpty(message = "Имя не должно быть пустым!")
+    @Size(min = 2, max = 30, message = "Имя должно быть от 2-х до 30-ти символов")
     private String name; // Имя
-    @NotBlank
-    @Min(value = 3)
-    @Max(value = 15)
+    @NotEmpty(message = "Фамилия не должно быть пустым!")
+    @Size(min = 2, max = 30, message = "Фамилия должно быть от 2-х до 30-ти символов")
     private String lastName; // Фамилия
-    @NotBlank
-    @Min(value = 3)
-    @Max(value = 15)
     private String middleName; // Отчество
     @NotBlank
     private String position; // Должность
     @NotBlank
     private Department department; // Отделение
-    @Email
-    @NotBlank
+    @Email(message = "Email должые быть валидным: *****@***.ru")
+    @NotEmpty(message = "Email не должно быть пустым!")
     private String email;
     @NotBlank
     private LocalDate dateOfEmployment; // Дата приемна на работу
