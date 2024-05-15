@@ -4,31 +4,29 @@ import ru.rkod.rkod.dto.EmployeeDto;
 import ru.rkod.rkod.model.Employee;
 
 public class EmployeeMapper {
-    public static EmployeeDto toEmployeeDto(Employee employee){
+    public static EmployeeDto toEmployeeDto(Employee employee) {
         EmployeeDto dto = new EmployeeDto();
         dto.setId(employee.getId());
         dto.setName(employee.getName());
         dto.setLastName(employee.getLastName());
-//        dto.setMiddleName(dto.getMiddleName());
-//        dto.setPosition(dto.getPosition());
-//        dto.setDepartment(dto.getDepartment());
-//        dto.setEmail(dto.getEmail());
-//        dto.setDateOfEmployment(dto.getDateOfEmployment());
-//        dto.setDateOfDismissal(dto.getDateOfDismissal());
+        dto.setMiddleName(employee.getMiddleName());
+        dto.setPosition(employee.getPosition());
+        dto.setDepartment(employee.getDepartment());
+        dto.setEmail(employee.getEmail());
+        dto.setDateOfEmployment(employee.getDateOfEmployment());
         return dto;
     }
 
-    public static Employee toEmployee(EmployeeDto employeeDto){
+    public static Employee toEmployee(EmployeeDto employeeDto) {
         Employee employee = new Employee();
         employee.setId(employeeDto.getId());
         employee.setName(employeeDto.getName());
         employee.setLastName(employeeDto.getLastName());
-//        employee.setMiddleName(employee.getMiddleName());
-//        employee.setPosition(employee.getPosition());
-//        employee.setDepartment(employee.getDepartment());
-//        employee.setEmail(employee.getEmail());
-//        employee.setDateOfEmployment(employee.getDateOfEmployment());
-//        employee.setDateOfDismissal(employee.getDateOfDismissal());
+        employee.setMiddleName(employeeDto.getMiddleName());
+        employee.setPosition(employeeDto.getPosition());
+        employee.setDepartment(employeeDto.getDepartment());
+        employee.setEmail(employeeDto.getEmail());
+        employee.setDateOfEmployment(employeeDto.getDateOfEmployment());
         return employee;
     }
 
