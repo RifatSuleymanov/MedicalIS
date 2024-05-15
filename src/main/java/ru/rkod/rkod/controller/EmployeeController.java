@@ -20,12 +20,13 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public List<Employee> getAll() {
+        log.info("метод getAll()");
         return employeeService.getAll();
     }
 
     @PostMapping("/add")
     public EmployeeDto addEmployee(@RequestBody EmployeeDto employeeDto) {
-        log.info("метод addEmployee");
+        log.info("метод addEmployee()");
         return employeeService.create(employeeDto);
     }
 }
