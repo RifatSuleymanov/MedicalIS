@@ -37,9 +37,8 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, int id) {
         Employee employeeOriginal = employeeRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("по вашему id не найден пользователь"));
+                .orElseThrow(() -> new NotFoundException("No user ID"));
 
-        // Маппинг EmployeeDto в Employee через INSTANCE
         Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);
 
         Optional.ofNullable(employee.getName()).ifPresent(employeeOriginal::setName);
@@ -56,7 +55,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public void employeeDelete(int id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("по вашему id не найден пользователь"));
+                .orElseThrow(() -> new NotFoundException("No user ID"));
         employeeRepository.delete(employee);
     }
 }

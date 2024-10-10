@@ -31,13 +31,13 @@ public class EmployeeController {
 
     @PatchMapping("/{id}")
     public EmployeeDto updateEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable Integer id) {
-        log.info("метод updateEmployee() employeeId " + id);
+        log.info("метод updateEmployee() employeeId {}", id);
         return employeeService.updateEmployee(employeeDto, id);
     }
 
     @DeleteMapping("/{id}")
     public void deleteEmployee(@PathVariable Integer id){
-        log.info("метод employeeDelete employeeId " + id);
+        log.info("метод employeeDelete employeeId {}", id);
         employeeService.employeeDelete(id);
     }
 }
