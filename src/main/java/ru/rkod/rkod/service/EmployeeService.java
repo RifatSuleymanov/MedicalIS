@@ -10,7 +10,6 @@ public interface EmployeeService {
 
     EmployeeDto create(EmployeeDto employeeDto);
 
-
     EmployeeDto updateEmployee(EmployeeDto employeeDto, int id);
 
     void employeeDelete(int id);

@@ -26,7 +26,7 @@ public class Employee {
     @Size(min = 2, max = 30, message = "Фамилия должно быть от 2-х до 30-ти символов")
     @Column(name = "lastname")
     private String lastName; // Фамилия
-    @Column(name = "middlename")
+    @Column(name = "patronymic")
     private String middleName; // Отчество
     @NotBlank
     @Column(name = "position")
