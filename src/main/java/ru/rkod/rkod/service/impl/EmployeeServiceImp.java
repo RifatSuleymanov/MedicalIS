@@ -30,15 +30,18 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     @Transactional
     public EmployeeDto create(EmployeeDto employeeDto) {
-        Employee employee = EmployeeMapper.toEmployee(employeeDto);
-        return EmployeeMapper.toEmployeeDto(employeeRepository.save(employee));
+        Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);  // Использование INSTANCE
+        return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employee));  // Использование INSTANCE
     }
 
     @Override
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, int id) {
-        Employee employee = EmployeeMapper.toEmployee(employeeDto);
         Employee employeeOriginal = employeeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("по вашему id не найден пользователь"));
+
+        // Маппинг EmployeeDto в Employee через INSTANCE
+        Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);
+
         Optional.ofNullable(employee.getName()).ifPresent(employeeOriginal::setName);
         Optional.ofNullable(employee.getLastName()).ifPresent(employeeOriginal::setLastName);
         Optional.ofNullable(employee.getMiddleName()).ifPresent(employeeOriginal::setMiddleName);
@@ -46,13 +49,14 @@ public class EmployeeServiceImp implements EmployeeService {
         Optional.ofNullable(employee.getDepartment()).ifPresent(employeeOriginal::setDepartment);
         Optional.ofNullable(employee.getEmail()).ifPresent(employeeOriginal::setEmail);
         Optional.ofNullable(employee.getDateOfEmployment()).ifPresent(employeeOriginal::setDateOfEmployment);
-        return EmployeeMapper.toEmployeeDto(employeeRepository.save(employeeOriginal));
+
+        return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employeeOriginal));  // Использование INSTANCE
     }
 
     @Override
     public void employeeDelete(int id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(()->new NotFoundException("по вашему id не найден пользователь"));
+                .orElseThrow(() -> new NotFoundException("по вашему id не найден пользователь"));
         employeeRepository.delete(employee);
     }
 }
