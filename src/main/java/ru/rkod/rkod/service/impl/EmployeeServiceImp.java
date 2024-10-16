@@ -30,8 +30,8 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     @Transactional
     public EmployeeDto create(EmployeeDto employeeDto) {
-        Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);  // Использование INSTANCE
-        return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employee));  // Использование INSTANCE
+        Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);
+        return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employee));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EmployeeServiceImp implements EmployeeService {
         Optional.ofNullable(employee.getEmail()).ifPresent(employeeOriginal::setEmail);
         Optional.ofNullable(employee.getDateOfEmployment()).ifPresent(employeeOriginal::setDateOfEmployment);
 
-        return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employeeOriginal));  // Использование INSTANCE
+        return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employeeOriginal));
     }
 
     @Override
