@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.rkod.rkod.dto.EmployeeDto;
+import ru.rkod.rkod.exception.EmployeeNotFoundException;
 import ru.rkod.rkod.exception.NotFoundException;
 import ru.rkod.rkod.mapper.EmployeeMapper;
 import ru.rkod.rkod.model.Employee;
@@ -23,9 +24,21 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getAll() {
-        return employeeRepository.findAll();
+    public Optional<Object> getAll() {
+        List<Employee> employees = employeeRepository.findAll();
+        if (employees.isEmpty()) {
+            log.info("В базе данных нет сотрудников.");
+            return Optional.empty(); // Вернуть Optional.empty(), если сотрудников нет
+        }
+        return Optional.of(employees); // Вернуть список сотрудников
     }
+
+    @Override
+    public Optional<Employee> findById(int id){
+        return Optional.ofNullable(employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник с id " + id + " не найден")));
+    }
+
 
     @Override
     @Transactional

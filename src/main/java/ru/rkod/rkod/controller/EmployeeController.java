@@ -7,7 +7,7 @@ import ru.rkod.rkod.dto.EmployeeDto;
 import ru.rkod.rkod.model.Employee;
 import ru.rkod.rkod.service.EmployeeService;
 
-import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -18,9 +18,15 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @GetMapping("")
-    public List<Employee> getAll() {
+    public Optional<Object> getAll() {
         log.info("метод getAll()");
         return employeeService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Employee> findById(@PathVariable int id) {
+        log.info("метод findById({})", id);
+        return employeeService.findById(id);
     }
 
     @PostMapping("")

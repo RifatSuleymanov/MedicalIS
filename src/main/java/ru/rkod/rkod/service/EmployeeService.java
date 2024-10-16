@@ -3,10 +3,12 @@ package ru.rkod.rkod.service;
 import ru.rkod.rkod.dto.EmployeeDto;
 import ru.rkod.rkod.model.Employee;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeService {
-    List<Employee> getAll();
+    Optional<Object> getAll();
+
+    Optional<Employee> findById(int id);
 
     EmployeeDto create(EmployeeDto employeeDto);
 
