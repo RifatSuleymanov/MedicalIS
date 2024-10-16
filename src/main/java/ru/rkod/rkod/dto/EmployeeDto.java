@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor(force = true)
 public class EmployeeDto {
-
     private Integer id; //id
     public String name; // Имя
     public String lastName; // Фамилия
