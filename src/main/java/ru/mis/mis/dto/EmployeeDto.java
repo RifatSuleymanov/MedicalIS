@@ -1,9 +1,9 @@
-package ru.rkod.rkod.dto;
+package ru.mis.mis.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.rkod.rkod.model.Department;
-import ru.rkod.rkod.model.Employee;
+import ru.mis.mis.model.Department;
+import ru.mis.mis.model.Employee;
 
 import java.time.LocalDate;
 

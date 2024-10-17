@@ -1,4 +1,4 @@
-package ru.rkod.rkod.exception.model;
+package ru.mis.mis.exception.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

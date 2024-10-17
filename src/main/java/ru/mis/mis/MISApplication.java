@@ -1,4 +1,4 @@
-package ru.rkod.rkod;
+package ru.mis.mis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,5 +8,4 @@ public class MISApplication {
     public static void main(String[] args) {
         SpringApplication.run(MISApplication.class, args);
     }
-
 }

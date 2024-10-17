@@ -1,4 +1,4 @@
-package ru.rkod.rkod.model;
+package ru.mis.mis.model;
 
 public enum Department {
     ADMIN,

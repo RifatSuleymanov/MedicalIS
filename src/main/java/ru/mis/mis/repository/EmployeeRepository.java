@@ -1,7 +1,7 @@
-package ru.rkod.rkod.repository;
+package ru.mis.mis.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.rkod.rkod.model.Employee;
+import ru.mis.mis.model.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 

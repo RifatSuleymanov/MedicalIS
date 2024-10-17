@@ -1,4 +1,4 @@
-package ru.rkod.rkod.model;
+package ru.mis.mis.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
