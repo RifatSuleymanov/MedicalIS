@@ -34,7 +34,7 @@ class EmployeeServiceImpTest {
 
     @Test
     void getAll_ShouldReturnEmployees() {
-        Employee employee = new Employee(); // Настройте свойства Employee
+        Employee employee = new Employee();
         when(employeeRepository.findAll()).thenReturn(Collections.singletonList(employee));
 
         Optional<Object> employees = employeeService.getAll();
@@ -57,7 +57,7 @@ class EmployeeServiceImpTest {
     @Test
     void findById_ShouldReturnEmployee() {
         int employeeId = 1;
-        Employee employee = new Employee(); // Настройте свойства Employee
+        Employee employee = new Employee();
         when(employeeRepository.findById(employeeId)).thenReturn(Optional.of(employee));
 
         Optional<Employee> foundEmployee = employeeService.findById(employeeId);
@@ -82,22 +82,21 @@ class EmployeeServiceImpTest {
 
     @Test
     void create_ShouldReturnCreatedEmployeeDto() {
-        EmployeeDto employeeDto = new EmployeeDto(); // Настройте свойства EmployeeDto
+        EmployeeDto employeeDto = new EmployeeDto();
         Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);
         when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
 
         EmployeeDto createdEmployeeDto = employeeService.create(employeeDto);
 
         assertNotNull(createdEmployeeDto);
-        // Проверьте соответствие свойств employeeDto и createdEmployeeDto
         verify(employeeRepository, times(1)).save(any(Employee.class));
     }
 
     @Test
     void updateEmployee_ShouldReturnUpdatedEmployeeDto() {
         int employeeId = 1;
-        Employee originalEmployee = new Employee(); // Настройте свойства Employee
-        EmployeeDto employeeDto = new EmployeeDto(); // Настройте свойства EmployeeDto
+        Employee originalEmployee = new Employee();
+        EmployeeDto employeeDto = new EmployeeDto();
         when(employeeRepository.findById(employeeId)).thenReturn(Optional.of(originalEmployee));
         when(employeeRepository.save(any(Employee.class))).thenReturn(originalEmployee);
 
@@ -111,7 +110,7 @@ class EmployeeServiceImpTest {
     @Test
     void employeeDelete_ShouldRemoveEmployee() {
         int employeeId = 1;
-        Employee employee = new Employee(); // Настройте свойства Employee
+        Employee employee = new Employee();
         when(employeeRepository.findById(employeeId)).thenReturn(Optional.of(employee));
 
         employeeService.employeeDelete(employeeId);

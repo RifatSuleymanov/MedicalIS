@@ -28,9 +28,9 @@ public class EmployeeServiceImp implements EmployeeService {
         List<Employee> employees = employeeRepository.findAll();
         if (employees.isEmpty()) {
             log.info("В базе данных нет сотрудников.");
-            return Optional.empty(); // Вернуть Optional.empty(), если сотрудников нет
+            return Optional.empty();
         }
-        return Optional.of(employees); // Вернуть список сотрудников
+        return Optional.of(employees);
     }
 
     @Override
