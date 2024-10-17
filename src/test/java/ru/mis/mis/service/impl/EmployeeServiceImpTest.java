@@ -1,15 +1,16 @@
-package ru.rkod.rkod.service.impl;
+package ru.mis.mis.service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import ru.rkod.rkod.dto.EmployeeDto;
-import ru.rkod.rkod.exception.EmployeeNotFoundException;
-import ru.rkod.rkod.exception.NotFoundException;
-import ru.rkod.rkod.mapper.EmployeeMapper;
-import ru.rkod.rkod.model.Employee;
-import ru.rkod.rkod.repository.EmployeeRepository;
+import org.springframework.boot.test.context.SpringBootTest;
+import ru.mis.mis.exception.EmployeeNotFoundException;
+import ru.mis.mis.exception.NotFoundException;
+import ru.mis.mis.mapper.EmployeeMapper;
+import ru.mis.mis.model.Employee;
+import ru.mis.mis.repository.EmployeeRepository;
+import ru.mis.mis.dto.EmployeeDto;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@SpringBootTest
 class EmployeeServiceImpTest {
 
     @Mock

@@ -1,15 +1,15 @@
-package ru.rkod.rkod.service.impl;
+package ru.mis.mis.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.rkod.rkod.dto.EmployeeDto;
-import ru.rkod.rkod.exception.EmployeeNotFoundException;
-import ru.rkod.rkod.exception.NotFoundException;
-import ru.rkod.rkod.mapper.EmployeeMapper;
-import ru.rkod.rkod.model.Employee;
-import ru.rkod.rkod.repository.EmployeeRepository;
-import ru.rkod.rkod.service.EmployeeService;
+import ru.mis.mis.repository.EmployeeRepository;
+import ru.mis.mis.dto.EmployeeDto;
+import ru.mis.mis.exception.EmployeeNotFoundException;
+import ru.mis.mis.exception.NotFoundException;
+import ru.mis.mis.mapper.EmployeeMapper;
+import ru.mis.mis.model.Employee;
+import ru.mis.mis.service.EmployeeService;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +34,10 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> findById(int id){
+    public Optional<Employee> findById(int id) {
         return Optional.ofNullable(employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник с id " + id + " не найден")));
     }
-
 
     @Override
     @Transactional
