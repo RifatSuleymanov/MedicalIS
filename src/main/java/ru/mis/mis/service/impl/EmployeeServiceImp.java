@@ -27,7 +27,7 @@ public class EmployeeServiceImp implements EmployeeService {
     public Optional<Object> getAll() {
         List<Employee> employees = employeeRepository.findAll();
         if (employees.isEmpty()) {
-            log.info("В базе данных нет сотрудников.");
+            log.info("В базе данных нет Employee.");
             return Optional.empty();
         }
         return Optional.of(employees);
@@ -36,7 +36,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public Optional<Employee> findById(int id) {
         return Optional.ofNullable(employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник с id " + id + " не найден")));
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee с id " + id + " не найден")));
     }
 
     @Override
