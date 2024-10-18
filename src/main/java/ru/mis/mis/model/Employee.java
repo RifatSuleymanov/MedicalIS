@@ -17,25 +17,25 @@ import java.time.LocalDate;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; //id
-    @NotEmpty(message = "Имя не должно быть пустым!")
-    @Size(min = 2, max = 30, message = "Имя должно быть от 2-х до 30-ти символов")
+    private Integer id;
+    @NotEmpty(message = "First name must not be empty!")
+    @Size(min = 2, max = 30, message = "First name must be between 2 and 30 characters long.")
     @Column(name = "name")
-    private String name; // Имя
-    @NotEmpty(message = "Фамилия не должно быть пустым!")
-    @Size(min = 2, max = 30, message = "Фамилия должно быть от 2-х до 30-ти символов")
+    private String name;
+    @NotEmpty(message = "Last name must not be empty!")
+    @Size(min = 2, max = 30, message = "Last name must be between 2 and 30 characters.")
     @Column(name = "lastname")
-    private String lastName; // Фамилия
+    private String lastName;
     @Column(name = "patronymic")
-    private String middleName; // Отчество
+    private String middleName;
     @NotBlank
     @Column(name = "position")
-    private String position; // Должность
+    private String position;
     @Column(name = "department")
-    private Department department; // Отделение
+    private Department department;
     @Email(message = "Email должые быть валидным: *****@***.ru")
-    @NotEmpty(message = "Email не должно быть пустым!")
+    @NotEmpty(message = "Email must not be empty!")
     private String email;
-    @Column(name = "dateofemployment")
-    private LocalDate dateOfEmployment; // Дата приемна на работу
+    @Column(name = "dateOfEmployment")
+    private LocalDate dateOfEmployment;
 }

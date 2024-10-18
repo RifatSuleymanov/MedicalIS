@@ -3,12 +3,12 @@ package ru.mis.mis.service.impl;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.mis.mis.repository.EmployeeRepository;
 import ru.mis.mis.dto.EmployeeDto;
 import ru.mis.mis.exception.EmployeeNotFoundException;
 import ru.mis.mis.exception.NotFoundException;
 import ru.mis.mis.mapper.EmployeeMapper;
 import ru.mis.mis.model.Employee;
+import ru.mis.mis.repository.EmployeeRepository;
 import ru.mis.mis.service.EmployeeService;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class EmployeeServiceImp implements EmployeeService {
     public Optional<Object> getAll() {
         List<Employee> employees = employeeRepository.findAll();
         if (employees.isEmpty()) {
-            log.info("В базе данных нет Employee.");
+            log.info("There is no Employee in the database.");
             return Optional.empty();
         }
         return Optional.of(employees);
@@ -36,7 +36,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public Optional<Employee> findById(int id) {
         return Optional.ofNullable(employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee с id " + id + " не найден")));
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + id + " not found.")));
     }
 
     @Override

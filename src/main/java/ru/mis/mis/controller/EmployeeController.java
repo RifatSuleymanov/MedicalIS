@@ -19,31 +19,31 @@ public class EmployeeController {
 
     @GetMapping("")
     public Optional<Object> getAll() {
-        log.info("метод getAll()");
+        log.info("method getAll()");
         return employeeService.getAll();
     }
 
     @GetMapping("/{id}")
     public Optional<Employee> findById(@PathVariable int id) {
-        log.info("метод findById({})", id);
+        log.info("method findById({})", id);
         return employeeService.findById(id);
     }
 
     @PostMapping("")
     public EmployeeDto addEmployee(@RequestBody EmployeeDto employeeDto) {
-        log.info("метод addEmployee()");
+        log.info("method addEmployee()");
         return employeeService.create(employeeDto);
     }
 
     @PatchMapping("/{id}")
     public EmployeeDto updateEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable Integer id) {
-        log.info("метод updateEmployee() employeeId {}", id);
+        log.info("method updateEmployee() employeeId {}", id);
         return employeeService.updateEmployee(employeeDto, id);
     }
 
     @DeleteMapping("/{id}")
     public void deleteEmployee(@PathVariable Integer id){
-        log.info("метод employeeDelete employeeId {}", id);
+        log.info("method employeeDelete employeeId {}", id);
         employeeService.employeeDelete(id);
     }
 }
