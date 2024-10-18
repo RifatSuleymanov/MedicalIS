@@ -78,7 +78,7 @@ class EmployeeServiceImpTest {
             employeeService.findById(employeeId);
         });
 
-        assertEquals("Сотрудник с id 1 не найден", exception.getMessage());
+        assertEquals("Employee с id 1 не найден", exception.getMessage());
         verify(employeeRepository, times(1)).findById(employeeId);
     }
 
