@@ -3,21 +3,23 @@ package ru.mis.mis.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
+import java.util.Set;
+
 @Entity
-@Table(name = "department")
-public class Department {
+@Data
+@Table(name = "roles")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(nullable = false, unique = true)
     private String name;
 
     private String description;
 
-    //Руководитель
-    @ManyToOne
-    private Employee manager;
+    //связь с пользователем
+    @ManyToMany(mappedBy = "roles")
+    private Set<Employee> employees;
 }

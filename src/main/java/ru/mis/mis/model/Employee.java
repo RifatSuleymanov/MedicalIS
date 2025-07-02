@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
+import ru.mis.mis.dto.DepartmentDto;
 
 import java.time.LocalDate;
 
@@ -31,11 +32,15 @@ public class Employee {
     @NotBlank
     @Column(name = "position")
     private String position;
-    @Column(name = "department")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
     private Department department;
     @Email(message = "Email должен быть валидным: *****@***.ru")
     @NotEmpty(message = "Email must not be empty!")
     private String email;
     @Column(name = "dateOfEmployment")
     private LocalDate dateOfEmployment;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private Role role;
 }
