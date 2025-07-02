@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Validated
-@Table(name = "employee")
-public class Employee {
+@Table(name = "patient")
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -28,14 +28,7 @@ public class Employee {
     private String lastName;
     @Column(name = "patronymic")
     private String middleName;
-    @NotBlank
-    @Column(name = "position")
-    private String position;
-    @Column(name = "department")
-    private Department department;
     @Email(message = "Email должен быть валидным: *****@***.ru")
     @NotEmpty(message = "Email must not be empty!")
     private String email;
-    @Column(name = "dateOfEmployment")
-    private LocalDate dateOfEmployment;
 }
