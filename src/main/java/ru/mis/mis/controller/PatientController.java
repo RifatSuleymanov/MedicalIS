@@ -1,6 +1,7 @@
 package ru.mis.mis.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.mis.mis.dto.PatientDto;
@@ -11,8 +12,8 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
-@RequestMapping("patient")
+@RequiredArgsConstructor
+@RequestMapping("/patient")
 public class PatientController {
 
     private final PatientService patientService;

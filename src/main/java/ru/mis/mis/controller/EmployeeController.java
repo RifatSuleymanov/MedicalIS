@@ -1,6 +1,7 @@
 package ru.mis.mis.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.mis.mis.dto.EmployeeDto;
@@ -11,8 +12,8 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
-@RequestMapping("employee")
+@RequiredArgsConstructor
+@RequestMapping("/employee")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
