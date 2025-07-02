@@ -49,7 +49,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, int id) {
         Employee employeeOriginal = employeeRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("No user ID"));
+                .orElseThrow(() -> new ModelNotFoundException("No user ID"));
 
         Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);
 
