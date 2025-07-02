@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.mis.mis.dto.EmployeeDto;
-import ru.mis.mis.exception.EmployeeNotFoundException;
+import ru.mis.mis.exception.ModelNotFoundException;
 import ru.mis.mis.exception.NotFoundException;
 import ru.mis.mis.mapper.EmployeeMapper;
 import ru.mis.mis.model.Employee;
@@ -36,7 +36,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public Optional<Employee> findById(int id) {
         return Optional.ofNullable(employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + id + " not found.")));
+                .orElseThrow(() -> new ModelNotFoundException("Employee with id " + id + " not found.")));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public void employeeDelete(int id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("No user ID"));
+                .orElseThrow(() -> new ModelNotFoundException("No user ID"));
         employeeRepository.delete(employee);
     }
 }

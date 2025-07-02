@@ -2,20 +2,22 @@ package ru.mis.mis.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.mis.mis.model.Department;
-import ru.mis.mis.model.Employee;
+import ru.mis.mis.model.Patient;
 
 import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor(force = true)
-public class EmployeeDto extends Employee {
+public class PatientDto  extends Patient {
     private Integer id;
     private String name;
     private String lastName;
     private String middleName;
-    private String position;
-    private Department department;
+    private String gender;
     private String email;
-    private LocalDate dateOfEmployment;
+    private String phoneNumber;
+    private LocalDate birthDate;
+    private String snils;
+    private String policyNumber;
+
 }

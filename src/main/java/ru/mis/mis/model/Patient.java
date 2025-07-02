@@ -1,10 +1,8 @@
 package ru.mis.mis.model;
 
+import io.micrometer.core.annotation.Counted;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
@@ -20,15 +18,35 @@ public class Patient {
     private Integer id;
     @NotEmpty(message = "First name must not be empty!")
     @Size(min = 2, max = 30, message = "First name must be between 2 and 30 characters long.")
-    @Column(name = "name")
+    @Column(name = "namePatient")
     private String name;
     @NotEmpty(message = "Last name must not be empty!")
     @Size(min = 2, max = 30, message = "Last name must be between 2 and 30 characters.")
-    @Column(name = "lastname")
+    @Column(name = "lastnamePatien")
     private String lastName;
-    @Column(name = "patronymic")
+    @Column(name = "middleNamePatient")
     private String middleName;
     @Email(message = "Email должен быть валидным: *****@***.ru")
     @NotEmpty(message = "Email must not be empty!")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", length = 1)
+    @NotNull(message = "Gender must not be null")
+    private Gender gender;
     private String email;
+    @NotEmpty(message = "Phone number must not be empty")
+    @Pattern(regexp = "^\\+7\\d{10}$", message = "Phone number must match +7XXXXXXXXXX")
+    @Column(name = "phone_number_patient")
+    private String phoneNumber;
+    @Past(message = "Birth date must be in the past")
+    @NotNull(message = "Birth date must not be null")
+    @Column(name = "birth_date_patient")
+    private LocalDate birthDate;
+    @NotEmpty(message = "SNILS must not be empty")
+    @Pattern(regexp = "^\\d{11}$", message = "SNILS must be 11 digits")
+    @Column(name = "snils_patient", unique = true)
+    private String snils;
+    @NotEmpty(message = "Insurance policy number must not empty")
+    @Pattern(regexp = "^\\d{16}$", message = "Insurance policy number must be 16 digits")
+    @Column(name = "policy_number_patient", unique = true)
+    private String policyNumber;
 }

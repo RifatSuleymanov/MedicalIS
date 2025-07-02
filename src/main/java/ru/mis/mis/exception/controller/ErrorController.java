@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.mis.mis.exception.EmployeeNotFoundException;
+import ru.mis.mis.exception.ModelNotFoundException;
 import ru.mis.mis.exception.NotFoundException;
 import ru.mis.mis.exception.model.ErrorResponse;
 
@@ -25,7 +25,7 @@ public class ErrorController {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handlerRuntimeException(final EmployeeNotFoundException e) {
+    public ErrorResponse handlerRuntimeException(final ModelNotFoundException e) {
         return new ErrorResponse("INTERNAL SERVER ERROR", e.getMessage());
     }
 }

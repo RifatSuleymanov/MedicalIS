@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.mis.mis.exception.EmployeeNotFoundException;
+import ru.mis.mis.exception.ModelNotFoundException;
 import ru.mis.mis.exception.NotFoundException;
 import ru.mis.mis.mapper.EmployeeMapper;
 import ru.mis.mis.model.Employee;
@@ -74,7 +74,7 @@ class EmployeeServiceImpTest {
         int employeeId = 1;
         when(employeeRepository.findById(employeeId)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(EmployeeNotFoundException.class, () -> {
+        Exception exception = assertThrows(ModelNotFoundException.class, () -> {
             employeeService.findById(employeeId);
         });
 
