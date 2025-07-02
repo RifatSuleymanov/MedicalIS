@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.mis.mis.dto.PatientDto;
 import ru.mis.mis.exception.ModelNotFoundException;
-import ru.mis.mis.exception.NotFoundException;
 import ru.mis.mis.mapper.PatientMapper;
 import ru.mis.mis.model.Patient;
 import ru.mis.mis.repository.PatientRepository;
@@ -37,7 +36,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public Optional<Patient> findById(int id) {
         return Optional.ofNullable(patientRepository.findById(id)
-                .orElseThrow(()-> new ModelNotFoundException("Patient with id " + id + " not found")));
+                .orElseThrow(() -> new ModelNotFoundException("Patient with id " + id + " not found")));
     }
 
     @Override
@@ -55,7 +54,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void patientDelete(int id) {
         Patient patient = patientRepository.findById(id)
-                .orElseThrow(()-> new ModelNotFoundException("Patient with id " + id + " not found"));
+                .orElseThrow(() -> new ModelNotFoundException("Patient with id " + id + " not found"));
         patientRepository.delete(patient);
 
     }
