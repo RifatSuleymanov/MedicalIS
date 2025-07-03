@@ -3,6 +3,7 @@ package ru.mis.mis.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.mis.mis.model.Employee;
+import ru.mis.mis.model.Role;
 
 import java.util.List;
 

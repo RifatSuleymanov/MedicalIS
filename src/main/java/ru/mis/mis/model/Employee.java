@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import ru.mis.mis.dto.DepartmentDto;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @Entity
@@ -40,7 +41,11 @@ public class Employee {
     private String email;
     @Column(name = "dateOfEmployment")
     private LocalDate dateOfEmployment;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "employee_roles",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 }
