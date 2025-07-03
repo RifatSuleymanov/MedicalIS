@@ -9,13 +9,13 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor(force = true)
-public class EmployeeDto extends Employee {
+public class EmployeeDto {
     private Integer id;
     private String name;
     private String lastName;
     private String middleName;
     private String position;
-    private Department department;
+    private Integer departmentId;
     private String email;
     private LocalDate dateOfEmployment;
 }

@@ -1,5 +1,6 @@
 package ru.mis.mis.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -47,8 +48,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    @Transactional
     public DepartmentDto updateDepartment(DepartmentDto departmentDto, int id) {
-        return null;
+        Department departmentOriginal = departmentRepository.findById(id)
+                .orElseThrow(() -> new ModelNotFoundException("No department with id " + id + " found"));
+        Department department = DepartmentMapper.INSTANCE.toDepartment(departmentDto);
     }
 
     @Override

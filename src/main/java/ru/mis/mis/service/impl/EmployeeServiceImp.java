@@ -7,7 +7,9 @@ import ru.mis.mis.dto.EmployeeDto;
 import ru.mis.mis.exception.ModelNotFoundException;
 import ru.mis.mis.exception.NotFoundException;
 import ru.mis.mis.mapper.EmployeeMapper;
+import ru.mis.mis.model.Department;
 import ru.mis.mis.model.Employee;
+import ru.mis.mis.repository.DepartmentRepository;
 import ru.mis.mis.repository.EmployeeRepository;
 import ru.mis.mis.service.EmployeeService;
 
@@ -18,9 +20,11 @@ import java.util.Optional;
 @Service
 public class EmployeeServiceImp implements EmployeeService {
     private final EmployeeRepository employeeRepository;
+    private final DepartmentRepository departmentRepository;
 
-    public EmployeeServiceImp(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImp(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository) {
         this.employeeRepository = employeeRepository;
+        this.departmentRepository = departmentRepository;
     }
 
     @Override
@@ -51,17 +55,21 @@ public class EmployeeServiceImp implements EmployeeService {
         Employee employeeOriginal = employeeRepository.findById(id)
                 .orElseThrow(() -> new ModelNotFoundException("No user ID"));
 
-        Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);
-
-        Optional.ofNullable(employee.getName()).ifPresent(employeeOriginal::setName);
-        Optional.ofNullable(employee.getLastName()).ifPresent(employeeOriginal::setLastName);
-        Optional.ofNullable(employee.getMiddleName()).ifPresent(employeeOriginal::setMiddleName);
-        Optional.ofNullable(employee.getPosition()).ifPresent(employeeOriginal::setPosition);
-        Optional.ofNullable(employee.getDepartment()).ifPresent(employeeOriginal::setDepartment);
-        Optional.ofNullable(employee.getEmail()).ifPresent(employeeOriginal::setEmail);
-        Optional.ofNullable(employee.getDateOfEmployment()).ifPresent(employeeOriginal::setDateOfEmployment);
+        if(employeeDto.getName() != null) employeeOriginal.setName(employeeDto.getName());
+        if(employeeDto.getLastName() != null) employeeOriginal.setLastName(employeeDto.getLastName());
+        if(employeeDto.getMiddleName() != null) employeeOriginal.setMiddleName(employeeDto.getMiddleName());
+        if(employeeDto.getPosition() != null) employeeOriginal.setPosition(employeeDto.getPosition());
+        if(employeeDto.getDepartmentId() != null) {
+            Department dep = departmentRepository.findById(employeeDto.getDepartmentId())
+                    .orElseThrow(() -> new ModelNotFoundException("Department not found"));
+            employeeOriginal.setDepartment(dep);
+        }
+        if (employeeDto.getEmail() != null) employeeOriginal.setEmail(employeeDto.getEmail());
+        if (employeeDto.getDateOfEmployment() != null) employeeOriginal.setDateOfEmployment(employeeDto.getDateOfEmployment());
 
         return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employeeOriginal));
+
+
     }
 
     @Override
