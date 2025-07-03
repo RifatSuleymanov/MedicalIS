@@ -33,7 +33,7 @@ public class Employee {
     @Column(name = "position")
     private String position;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "department_id", nullable = true)
     private Department department;
     @Email(message = "Email должен быть валидным: *****@***.ru")
     @NotEmpty(message = "Email must not be empty!")

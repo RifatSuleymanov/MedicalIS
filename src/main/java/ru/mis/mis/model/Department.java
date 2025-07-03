@@ -3,6 +3,8 @@ package ru.mis.mis.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "department")
@@ -20,4 +22,8 @@ public class Department {
     //Руководитель
     @ManyToOne
     private Employee manager;
+
+    //Сотрудники
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    private List<Employee> employees;
 }
