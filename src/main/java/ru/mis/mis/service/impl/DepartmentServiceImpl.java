@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.mis.mis.dto.DepartmentDto;
-import ru.mis.mis.dto.EmployeeDto;
 import ru.mis.mis.exception.ModelNotFoundException;
 import ru.mis.mis.mapper.DepartmentMapper;
 import ru.mis.mis.model.Department;
@@ -28,7 +27,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Optional<Object> getAll() {
         List<Department> departments = departmentRepository.findAll();
-        if(departments.isEmpty()) {
+        if (departments.isEmpty()) {
             log.info("No department found");
             return Optional.empty();
         }
@@ -53,6 +52,12 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department departmentOriginal = departmentRepository.findById(id)
                 .orElseThrow(() -> new ModelNotFoundException("No department with id " + id + " found"));
         Department department = DepartmentMapper.INSTANCE.toDepartment(departmentDto);
+        if (department.getName() != null) departmentOriginal.setName(department.getName());
+        if (department.getDescription() != null) departmentOriginal.setDescription(department.getDescription());
+        if (department.getManager() != null) departmentOriginal.setManager(department.getManager());
+
+        Department updated = departmentRepository.save(departmentOriginal);
+        return DepartmentMapper.INSTANCE.toDepartmentDto(updated);
     }
 
     @Override
@@ -61,8 +66,8 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .orElseThrow(() -> new ModelNotFoundException("Отдел с id " + id + " не найден"));
 
         //Отвязываем сотрудников от отдела
-        List<EmployeeDto> employeesList = employeeRepository.findByDepartment(department);
-        for(EmployeeDto empDto : employeesList) {
+        List<Employee> employeesList = employeeRepository.findByDepartment(department);
+        for (Employee empDto : employeesList) {
             empDto.setDepartment(null);
             employeeRepository.save(empDto);
         }
