@@ -14,6 +14,7 @@ import java.util.Optional;
 @RequestMapping("/department")
 @RequiredArgsConstructor
 public class DepartmentController {
+
     private final DepartmentService departmentService;
 
     @GetMapping("")
@@ -45,5 +46,4 @@ public class DepartmentController {
         log.info("method deleteDepartment(DepartmentDto departmentDto) departmentDto");
         departmentService.departmentDelete(id);
     }
-
 }
