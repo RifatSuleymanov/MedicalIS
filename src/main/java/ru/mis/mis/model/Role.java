@@ -14,12 +14,14 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "role_name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "role_description")
     private String description;
 
     //связь с пользователем
     @ManyToMany(mappedBy = "roles")
+    @Column(name = "role_employees")
     private Set<Employee> employees;
 }
