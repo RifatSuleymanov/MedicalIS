@@ -1,5 +1,6 @@
 package ru.mis.mis.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,12 +23,12 @@ public class Department {
 
     //Руководитель
     @ManyToOne
-    @Column(name = "department_manager")
+    @JoinColumn(name = "department_manager")
     private Employee manager;
 
     //Сотрудники
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
-    @Column(name = "department_employees")
+    @JsonManagedReference
     private List<Employee> employees;
 
 

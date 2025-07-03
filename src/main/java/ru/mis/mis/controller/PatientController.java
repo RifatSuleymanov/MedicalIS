@@ -24,20 +24,20 @@ public class PatientController {
         return patientService.getAll();
     }
 
-    @GetMapping("/{id{}")
+    @GetMapping("/{id}")
     public Optional<Patient> findById(@PathVariable int id){
         log.info("method findById({}).Patient", id);
         return patientService.findById(id);
     }
 
-    @PostMapping("/{id}")
+    @PatchMapping("/{id}")
     public PatientDto updatePatient(@RequestBody PatientDto patientDto, @PathVariable Integer id) {
         log.info("method updatePatient() patientId {}", id);
         return patientService.updatePatient(patientDto, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePatietnt(@PathVariable Integer id){
+    public void deletePatient(@PathVariable Integer id){
         log.info("method patientDelete patientId {}", id);
         patientService.patientDelete(id);
     }

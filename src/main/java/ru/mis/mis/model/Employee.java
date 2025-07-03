@@ -1,5 +1,6 @@
 package ru.mis.mis.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -35,6 +36,7 @@ public class Employee {
     private String position;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = true)
+    @JsonBackReference
     private Department department;
     @Email(message = "Email должен быть валидным: *****@***.ru")
     @NotEmpty(message = "Email must not be empty!")

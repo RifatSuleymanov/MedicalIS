@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor(force = true)
-public class PatientDto  extends Patient {
+public class PatientDto {
     private Integer id;
     private String name;
     private String lastName;

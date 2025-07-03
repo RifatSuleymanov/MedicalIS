@@ -22,6 +22,5 @@ public class Role {
 
     //связь с пользователем
     @ManyToMany(mappedBy = "roles")
-    @Column(name = "role_employees")
     private Set<Employee> employees;
 }
