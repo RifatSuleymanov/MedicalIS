@@ -1,6 +1,5 @@
 package ru.mis.mis.model;
 
-import io.micrometer.core.annotation.Counted;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
