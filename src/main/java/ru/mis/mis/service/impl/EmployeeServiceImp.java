@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.mis.mis.dto.EmployeeDto;
 import ru.mis.mis.exception.ModelNotFoundException;
-import ru.mis.mis.exception.NotFoundException;
 import ru.mis.mis.mapper.EmployeeMapper;
 import ru.mis.mis.model.Department;
 import ru.mis.mis.model.Employee;
@@ -62,17 +61,18 @@ public class EmployeeServiceImp implements EmployeeService {
         Employee employeeOriginal = employeeRepository.findById(id)
                 .orElseThrow(() -> new ModelNotFoundException("No user ID"));
 
-        if(employeeDto.getName() != null) employeeOriginal.setName(employeeDto.getName());
-        if(employeeDto.getLastName() != null) employeeOriginal.setLastName(employeeDto.getLastName());
-        if(employeeDto.getMiddleName() != null) employeeOriginal.setMiddleName(employeeDto.getMiddleName());
-        if(employeeDto.getPosition() != null) employeeOriginal.setPosition(employeeDto.getPosition());
-        if(employeeDto.getDepartmentId() != null) {
+        if (employeeDto.getName() != null) employeeOriginal.setName(employeeDto.getName());
+        if (employeeDto.getLastName() != null) employeeOriginal.setLastName(employeeDto.getLastName());
+        if (employeeDto.getMiddleName() != null) employeeOriginal.setMiddleName(employeeDto.getMiddleName());
+        if (employeeDto.getPosition() != null) employeeOriginal.setPosition(employeeDto.getPosition());
+        if (employeeDto.getDepartmentId() != null) {
             Department dep = departmentRepository.findById(employeeDto.getDepartmentId())
                     .orElseThrow(() -> new ModelNotFoundException("Department not found"));
             employeeOriginal.setDepartment(dep);
         }
         if (employeeDto.getEmail() != null) employeeOriginal.setEmail(employeeDto.getEmail());
-        if (employeeDto.getDateOfEmployment() != null) employeeOriginal.setDateOfEmployment(employeeDto.getDateOfEmployment());
+        if (employeeDto.getDateOfEmployment() != null)
+            employeeOriginal.setDateOfEmployment(employeeDto.getDateOfEmployment());
 
         return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employeeOriginal));
 
