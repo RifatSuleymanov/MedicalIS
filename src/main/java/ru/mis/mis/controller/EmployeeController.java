@@ -1,6 +1,5 @@
 package ru.mis.mis.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +42,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable Integer id){
+    public void deleteEmployee(@PathVariable Integer id) {
         log.info("method employeeDelete employeeId {}", id);
         employeeService.employeeDelete(id);
     }
