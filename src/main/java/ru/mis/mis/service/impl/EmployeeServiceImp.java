@@ -47,6 +47,13 @@ public class EmployeeServiceImp implements EmployeeService {
     @Transactional
     public EmployeeDto create(EmployeeDto employeeDto) {
         Employee employee = EmployeeMapper.INSTANCE.toEmployee(employeeDto);
+
+        if (employeeDto.getDepartmentId() != null) {
+            Department department = departmentRepository.findById(employeeDto.getDepartmentId().intValue())
+                    .orElseThrow(() -> new ModelNotFoundException("Department not found"));
+            employee.setDepartment(department);
+        }
+
         return EmployeeMapper.INSTANCE.toEmployeeDto(employeeRepository.save(employee));
     }
 

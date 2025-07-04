@@ -26,12 +26,12 @@ public class Patient {
     private String lastName;
     @Column(name = "middleNamePatient")
     private String middleName;
-    @Email(message = "Email должен быть валидным: *****@***.ru")
-    @NotEmpty(message = "Email must not be empty!")
     @Enumerated(EnumType.STRING)
     @Column(name = "gender", length = 1)
     @NotNull(message = "Gender must not be null")
     private Gender gender;
+    @Email(message = "Email должен быть валидным: *****@***.ru")
+    @NotEmpty(message = "Email must not be empty!")
     private String email;
     @NotEmpty(message = "Phone number must not be empty")
     @Pattern(regexp = "^\\+7\\d{10}$", message = "Phone number must match +7XXXXXXXXXX")

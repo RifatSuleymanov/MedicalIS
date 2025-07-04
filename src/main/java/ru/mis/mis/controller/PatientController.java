@@ -29,6 +29,12 @@ public class PatientController {
         return patientService.findById(id);
     }
 
+    @PostMapping("")
+    public PatientDto create(@RequestBody PatientDto patient) {
+        log.info("method create({}).Patient", patient);
+        return patientService.create(patient);
+    }
+
     @PatchMapping("/{id}")
     public PatientDto updatePatient(@RequestBody PatientDto patientDto, @PathVariable Integer id) {
         log.info("method updatePatient() patientId {}", id);

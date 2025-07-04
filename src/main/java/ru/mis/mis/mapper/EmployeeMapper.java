@@ -7,6 +7,7 @@ import ru.mis.mis.model.Employee;
 
 @Mapper
 public interface EmployeeMapper {
+
     EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
 
     EmployeeDto toEmployeeDto(Employee employee);
