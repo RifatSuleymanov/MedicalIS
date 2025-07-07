@@ -40,7 +40,7 @@ CREATE TABLE employee_roles (
 CREATE TABLE patient (
                          id INT AUTO_INCREMENT PRIMARY KEY,
                          namePatient VARCHAR(30) NOT NULL,
-                         lastnamePatien VARCHAR(30) NOT NULL,
+                         lastnamePatient VARCHAR(30) NOT NULL,
                          middleNamePatient VARCHAR(255),
                          gender VARCHAR(10) NOT NULL,
                          email VARCHAR(255) NOT NULL,

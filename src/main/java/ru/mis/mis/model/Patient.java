@@ -21,7 +21,7 @@ public class Patient {
     private String name;
     @NotEmpty(message = "Last name must not be empty!")
     @Size(min = 2, max = 30, message = "Last name must be between 2 and 30 characters.")
-    @Column(name = "lastnamePatien")
+    @Column(name = "lastnamePatient")
     private String lastName;
     @Column(name = "middleNamePatient")
     private String middleName;
